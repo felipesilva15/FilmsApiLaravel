@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('telephones', function (Blueprint $table) {
             $table->id();
+            $table->string('number', 20);
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

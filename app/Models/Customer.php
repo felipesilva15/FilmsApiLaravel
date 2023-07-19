@@ -22,4 +22,12 @@ class Customer extends Model
     public function file($id) {
         return $this->find($id)->image;
     }
+
+    public function telephone() {
+        return $this->hasMany(Telephone::class);
+    }
+
+    public function rentedFilms() {
+        return $this->belongsToMany(Film::class, 'locations');
+    }
 }
