@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MasterNotFoundHttpException;
 use App\Models\Telephone;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class TelephoneController extends MasterController
         $data = $this->model::with('customer')->find($id);
 
         if (!$data) {
-            return response()->json(['error' => 'Nenhum registro encontrado'], 404);
+            throw new MasterNotFoundHttpException;
         }
 
         return response()->json($data, 200);

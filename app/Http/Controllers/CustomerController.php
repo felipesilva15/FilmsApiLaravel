@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MasterNotFoundHttpException;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class CustomerController extends MasterController
         $data = $this->model::with('telephone')->find($id);
 
         if (!$data) {
-            return response()->json(['error' => 'Nenhum registro encontrado'], 404);
+            throw new MasterNotFoundHttpException;
         }
 
         return response()->json($data, 200);
@@ -34,7 +35,7 @@ class CustomerController extends MasterController
         $data = $this->model::with('rentedFilms')->find($id);
 
         if (!$data) {
-            return response()->json(['error' => 'Nenhum registro encontrado'], 404);
+            throw new MasterNotFoundHttpException;
         }
 
         return response()->json($data, 200);

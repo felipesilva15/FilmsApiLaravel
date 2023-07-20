@@ -51,4 +51,12 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() {
         return [];
     }
+
+    public static function rules(): Array {
+        return [
+            'name' => 'required|string|max:20',
+            'email' => 'required|email',
+            'password' => 'required|string|min:6'
+        ];
+    }
 }

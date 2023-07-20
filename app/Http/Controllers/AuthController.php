@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -31,7 +32,7 @@ class AuthController extends Controller
             return $this->respondWithToken($token);
         }
     
-        return response()->json(['error' => 'Unauthorized'], 401);
+        throw new UnauthorizedHttpException("error", "Unauthorized.");
     }
 
     /**
@@ -53,7 +54,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['message' => 'Successfully logged out.']);
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ExternalToolErrorException;
+use App\Exceptions\MasterNotFoundHttpException;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -34,7 +36,7 @@ class MasterController extends BaseController
             $upload = $request->file($this->uploadField)->storeAs($this->storageFolder, $filename, "public");
 
             if (!$upload) {
-                return response()->json(['error' => 'Falha ao realizar o upload da imagem'], 500);
+                throw new ExternalToolErrorException("Failed to upload image");
             }
 
             $dataform[$this->uploadField] = $filename;
@@ -49,7 +51,7 @@ class MasterController extends BaseController
         $data = $this->model::find($id);
 
         if (!$data) {
-            return response()->json(['error' => 'Nenhum registro encontrado'], 404);
+            throw new MasterNotFoundHttpException;
         }
 
         return response()->json($data, 200);
@@ -59,7 +61,7 @@ class MasterController extends BaseController
         $data = $this->model::find($id);
 
         if (!$data) {
-            return response()->json(['error' => 'Nenhum registro encontrado'], 404);
+            throw new MasterNotFoundHttpException;
         }
 
         $request->validate($this->model::rules());
@@ -78,7 +80,7 @@ class MasterController extends BaseController
             $upload = $request->file($this->uploadField)->storeAs($this->storageFolder, $filename, "public");
 
             if (!$upload) {
-                return response()->json(['error' => 'Falha ao realizar o upload da imagem'], 500);
+                throw new ExternalToolErrorException("Failed to upload image");
             }
 
             $dataform[$this->uploadField] = $filename;
@@ -93,7 +95,7 @@ class MasterController extends BaseController
         $data = $this->model::find($id);
 
         if (!$data) {
-            return response()->json(['error' => 'Nenhum registro encontrado'], 404);
+            throw new MasterNotFoundHttpException;
         }
 
         if (method_exists($this->model, 'file')) {

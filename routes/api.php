@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\TelephoneController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Login
+// Auth
 Route::post('login', [AuthController::class, 'login']);
 Route::post('refresh-token', [AuthController::class, 'refresh']);
 Route::get('me', [AuthController::class, 'me']);
+Route::post('logout', [AuthController::class, 'logout']);
 
 Route::group(['middleware' => 'auth:api'], function () {
     // Customers
@@ -39,4 +41,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     // Films
     Route::apiResource('film', FilmController::class);
+
+    // Users
+    Route::apiResource('user', UserController::class);
 });
