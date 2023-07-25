@@ -15,7 +15,7 @@ class Customer extends Model
         return [
             'name' => 'required|string',
             'image' => 'image',
-            'cpf_cnpj' => 'required|string|unique:clients'
+            'cpf_cnpj' => 'required|string|unique:customers'
         ];
     }
 
