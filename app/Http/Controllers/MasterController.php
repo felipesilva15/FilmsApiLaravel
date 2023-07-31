@@ -19,8 +19,23 @@ class MasterController extends BaseController
     protected $request;
     protected $uploadField;
 
-    public function index() {
-        $data = $this->model::all();
+    public function index(Request $request) {
+        $query = $this->model::query();
+        $filters = $request->all();
+
+        $othersFillableFields = ['id', 'created_at', 'updated_at'];
+
+        foreach ($filters as $field => $value) {
+            if (in_array($field, $this->model->getFillable()) || in_array($field, $othersFillableFields)) {
+                if (gettype($value) == 'string') {
+                    $query->where($field, 'like', '%'.trim($value).'%');
+                } else {
+                    $query->where($field, $value);
+                }
+            }
+        }
+
+        $data = $query->get();
 
         return response()->json($data, 200);
     }
