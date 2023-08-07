@@ -35,16 +35,9 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         if($e instanceof HttpException){
-            return response()->json(["error" => $e->getMessage()], $e->getStatusCode());
+            return response()->json(["message" => $e->getMessage()], $e->getStatusCode());
         }
 
         return parent::render($request, $e);
-    }
-
-    private function getExceptionsForCustomMessage(): Array 
-    {
-        return [
-            'UnauthorizedHttpException'
-        ];
     }
 }
