@@ -10,6 +10,21 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @OA\Info(
+ *      title="Films API Docs",
+ *      version="1.0.0",
+ *      description="API for executing films functionalities",
+ *      @OA\Contact(
+ *          email="felipe.allware@gmail.com",
+ *          name="Felipe Silva"
+ *      ),
+ *      @OA\License(
+ *          name="Licença API",
+ *          url="https://github.com/felipesilva15/FilmsApiLaravel/blob/main/LICENSE"
+ *      )
+ * )
+ */
 class MasterController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
