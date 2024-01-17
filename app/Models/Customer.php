@@ -5,6 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @OA\Schema(
+ *      schema="Customer",
+ *      required={"name", "cpf_cnpj"},
+ *      @OA\Property(property="id", type="integer", example=1),
+ *      @OA\Property(property="name", type="string", example="Felipe", maxLength=150),
+ *      @OA\Property(property="image", type="string", format="binary", maxLength=100),
+ *      @OA\Property(property="cpf_cnpj", type="string", example="15985687599", maxLength=19)
+ * )
+ */
 class Customer extends Model
 {
     use HasFactory;
