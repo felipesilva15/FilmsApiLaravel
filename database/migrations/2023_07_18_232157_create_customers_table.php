@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 150);
             $table->string('image', 100)->nullable();
-            $table->string('cpf_cnpj', 19)->unique();
+            $table->string('cpf_cnpj', 14)->unique();
             $table->timestamps();
         });
     }

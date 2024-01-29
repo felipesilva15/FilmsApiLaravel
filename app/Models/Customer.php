@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  *      required={"name", "cpf_cnpj"},
  *      @OA\Property(property="id", type="integer", example=1),
  *      @OA\Property(property="name", type="string", example="Felipe", maxLength=150),
- *      @OA\Property(property="image", type="string", format="binary", maxLength=100),
- *      @OA\Property(property="cpf_cnpj", type="string", example="15985687599", maxLength=19)
+ *      @OA\Property(property="image", type="string", format="binary"),
+ *      @OA\Property(property="cpf_cnpj", type="string", example="15985687599", maxLength=14)
  * )
  */
 class Customer extends Model
@@ -25,7 +25,7 @@ class Customer extends Model
         return [
             'name' => 'required|string',
             'image' => 'image',
-            'cpf_cnpj' => 'required|string|unique:customers'
+            'cpf_cnpj' => 'required|string|unique:customers|max:14'
         ];
     }
 
