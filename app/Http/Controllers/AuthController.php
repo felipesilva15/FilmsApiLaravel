@@ -28,9 +28,10 @@ class AuthController extends Controller
      *         required=true,
      *         description="Login details",
      *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(property="email", type="string", example="mail@example.com"),
-     *             @OA\Property(property="password", type="string", example="123456")
+     *              type="object",
+     *              required={"email", "password"},
+     *              @OA\Property(property="email", type="string", example="mail@example.com"),
+     *              @OA\Property(property="password", type="string", example="123456")
      *         )
      *     ),
      *     @OA\Response(
@@ -80,9 +81,25 @@ class AuthController extends Controller
     }
 
     /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/api/logout",
+     *     tags={"Authentication"},
+     *     summary="Logout",
+     *     @OA\Response(
+     *          response="200", 
+     *          description="Logout",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="integer", example="Logout efetuado com sucesso.")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response="401", 
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *     ),
+     *     security={{"bearerAuth":{}}}
+     * )
      */
     public function logout()
     {
@@ -92,9 +109,22 @@ class AuthController extends Controller
     }
 
     /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/api/refresh-token",
+     *     tags={"Authentication"},
+     *     summary="Refresh the access token",
+     *     @OA\Response(
+     *          response="200", 
+     *          description="Token details",
+     *          @OA\JsonContent(ref="#/components/schemas/AccessTokenDTO")
+     *     ),
+     *     @OA\Response(
+     *          response="401", 
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *     ),
+     *     security={{"bearerAuth":{}}}
+     * )
      */
     public function refresh()
     {
