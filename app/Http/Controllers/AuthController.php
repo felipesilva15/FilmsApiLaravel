@@ -20,9 +20,30 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *      path="/api/login",
+     *      tags={"Authentication"},
+     *      summary="Log in",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         description="Login details",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="email", type="string", example="mail@example.com"),
+     *             @OA\Property(property="password", type="string", example="123456")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response="200", 
+     *          description="Token details",
+     *          @OA\JsonContent(ref="#/components/schemas/AccessTokenDTO")
+     *     ),
+     *     @OA\Response(
+     *          response="401", 
+     *          description="Invalid credentials",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *     )
+     * )
      */
     public function login()
     {
@@ -36,9 +57,22 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Get(
+     *     path="/api/me",
+     *     tags={"Authentication"},
+     *     summary="Logged in user data",
+     *     @OA\Response(
+     *          response="200", 
+     *          description="User data",
+     *          @OA\JsonContent(ref="#/components/schemas/UserDTO")
+     *     ),
+     *     @OA\Response(
+     *          response="401", 
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *     ),
+     *     security={{"bearerAuth":{}}}
+     * )
      */
     public function me()
     {
