@@ -16,7 +16,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  *      @OA\Property(property="id", type="integer", example=1),
  *      @OA\Property(property="name", type="string", example="Felipe", maxLength=20),
  *      @OA\Property(property="email", type="string", format="email", example="mail@example.com"),
- *      @OA\Property(property="password", type="string", example="123456", minLength=6)
+ *      @OA\Property(property="password", type="string", example="123456", minLength=6),
+ *      @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z"),
+ *      @OA\Property(property="updated_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z")
  * )
  */
 class User extends Authenticatable implements JWTSubject

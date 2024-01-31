@@ -11,7 +11,9 @@ use Illuminate\Database\Eloquent\Model;
  *      required={"number", "customer_id"},
  *      @OA\Property(property="id", type="integer", example=1),
  *      @OA\Property(property="number", type="string", example="+551140028922", maxLength=20),
- *      @OA\Property(property="customer_id", type="integer", example=1)
+ *      @OA\Property(property="customer_id", type="integer", example=1),
+ *      @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z"),
+ *      @OA\Property(property="updated_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z")
  * )
  */
 class Telephone extends Model
