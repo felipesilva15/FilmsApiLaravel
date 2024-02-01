@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *      required={"title"},
  *      @OA\Property(property="id", type="integer", example=1),
  *      @OA\Property(property="title", type="string", example="Toy Story 4", maxLength=150),
- *      @OA\Property(property="image", type="string", format="binary"),
+ *      @OA\Property(property="cover_image", type="string", format="binary"),
  *      @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z"),
  *      @OA\Property(property="updated_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z")
  * )
