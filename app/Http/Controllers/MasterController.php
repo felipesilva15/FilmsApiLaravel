@@ -52,6 +52,12 @@ class MasterController extends BaseController
 
         $data = $query->get();
 
+        if ($this->uploadField && $this->storageFolder) {
+            foreach ($data as $key => $item) {
+                $data[$key][$this->uploadField."_url"] = url(Storage::url("{$this->storageFolder}/{$item[$this->uploadField]}"));
+            }
+        }
+
         return response()->json($data, 200);
     }
 
@@ -79,6 +85,10 @@ class MasterController extends BaseController
 
     public function show($id) {
         $data = $this->model::find($id);
+        
+        if ($this->uploadField && $this->storageFolder) {
+            $data[$this->uploadField."_url"] = url(Storage::url("{$this->storageFolder}/{$data[$this->uploadField]}"));
+        }
 
         if (!$data) {
             throw new MasterNotFoundHttpException;
