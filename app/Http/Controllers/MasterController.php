@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * @OA\Info(
- *      title="Films API Docs",
+ *      title="Films API",
  *      version="1.0.0",
  *      description="API for executing films functionalities",
  *      @OA\Contact(
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Storage;
  *          name="Felipe Silva"
  *      ),
  *      @OA\License(
- *          name="Licença API",
+ *          name="License",
  *          url="https://github.com/felipesilva15/FilmsApiLaravel/blob/main/LICENSE"
  *      )
  * )
