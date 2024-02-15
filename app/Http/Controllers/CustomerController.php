@@ -15,6 +15,7 @@ class CustomerController extends MasterController
         $this->request = $request;
     }
 
+    
     public function index(Request $request) {
         $query = $this->model::query();
         $filters = $request->all();
@@ -54,5 +55,142 @@ class CustomerController extends MasterController
         }
 
         return response()->json($data, 200);
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/customer/{id}",
+     *      tags={"Customer"},
+     *      summary="List an customer by ID",
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Customer ID",
+     *         @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response="200", 
+     *          description="Customer data",
+     *          @OA\JsonContent(ref="#/components/schemas/Customer")
+     *      ),
+     *      @OA\Response(
+     *          response="401", 
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *      ),
+     *      @OA\Response(
+     *          response="404", 
+     *          description="Record not found",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *      ),
+     *     security={{"bearerAuth":{}}}
+     * )
+     */
+    public function show($id) {
+        return parent::show($id);
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/customer",
+     *      tags={"Customer"},
+     *      summary="Registers an customer",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Data for creating a new customer",
+     *          @OA\JsonContent(ref="#/components/schemas/Customer")
+     *      ),
+     *      @OA\Response(
+     *          response="201", 
+     *          description="Registered customer data",
+     *          @OA\JsonContent(ref="#/components/schemas/Customer")
+     *      ),
+     *      @OA\Response(
+     *          response="401", 
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *      ),
+     *      security={{"bearerAuth":{}}}
+     * )
+     */
+    public function store(Request $request) {
+        return parent::store($request);
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/customer/{id}",
+     *      tags={"Customer"},
+     *      summary="Update an customer",
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Customer ID",
+     *         @OA\Schema(type="integer")
+     *      ),
+     *      @OA\RequestBody(
+     *         required=true,
+     *         description="Data for update customer",
+     *         @OA\JsonContent(ref="#/components/schemas/Customer")
+     *      ),
+     *      @OA\Response(
+     *          response="200", 
+     *          description="Updated customer data",
+     *          @OA\JsonContent(ref="#/components/schemas/Customer")
+     *      ),
+     *      @OA\Response(
+     *          response="401", 
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *      ),
+     *      @OA\Response(
+     *          response="404", 
+     *          description="Record not found",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *      ),
+     *      security={{"bearerAuth":{}}}
+     * )
+     */
+    public function update(Request $request, $id) {
+        return parent::update($request, $id);
+    }
+
+    /**
+     * @OA\Delete(
+     *      path="/api/customer/{id}",
+     *      tags={"Customer"},
+     *      summary="Deletes an customer",
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="Customer ID",
+     *         @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Response(
+     *          response="200", 
+     *          description="Return message",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", example="Registro deletado com sucesso!")
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response="401", 
+     *          description="Unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *      ),
+     *      @OA\Response(
+     *          response="404", 
+     *          description="Record not found",
+     *          @OA\JsonContent(ref="#/components/schemas/ApiError")
+     *      ),
+     *      security={{"bearerAuth":{}}}
+     * )
+     */
+    public function destroy( $id) {
+        return parent::destroy($id);
     }
 }
