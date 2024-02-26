@@ -11,7 +11,8 @@ namespace App\Helpers\Schemas;
  *      @OA\Property(property="image", type="string", format="binary"),
  *      @OA\Property(property="cpf_cnpj", type="string", example="15985687599", maxLength=14),
  *      @OA\Property(property="created_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z"),
- *      @OA\Property(property="updated_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z")
+ *      @OA\Property(property="updated_at", type="string", format="date-time", example="2024-01-30T03:00:00.000000Z"),
+ *      @OA\Property(property="telephone", ref="#/components/schemas/Telephone")
  * )
  */
 class CustomerWithTelephoneDTO {
