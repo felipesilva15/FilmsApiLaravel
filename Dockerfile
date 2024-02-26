@@ -31,6 +31,7 @@ RUN sed -i "s#DB_HOST=.*#DB_HOST=${DB_HOST}#" .env \
 RUN composer install
 RUN php artisan route:cache && php artisan view:cache
 RUN php artisan key:generate
+RUN php artisan migrate
 
 EXPOSE 8000
 
