@@ -24,6 +24,8 @@
 
 Este é um projeto se baseia em uma API de locação de filmes, no qual permite o usuário de se cadastrar, cadastrar filmes e registrar a locação dos mesmos.
 
+Este projeto foi implantado em uma VPS na [Hostinger](https://www.hostinger.com.br/), e está disponível através do link <https://films-api-laravel.felipesilva15.com.br/api/documentation>
+
 ## 🚀 Rodando localmente
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
