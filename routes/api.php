@@ -29,6 +29,9 @@ Route::post('refresh-token', [AuthController::class, 'refresh']);
 Route::get('me', [AuthController::class, 'me']);
 Route::post('logout', [AuthController::class, 'logout']);
 
+// User
+Route::post('user', [UserController::class, 'store']);
+
 Route::group(['middleware' => 'auth:api'], function () {
     // Customers
     Route::apiResource('customer', CustomerController::class);
@@ -43,5 +46,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResource('film', FilmController::class);
 
     // Users
-    Route::apiResource('user', UserController::class);
+    Route::get('user/{id}', [UserController::class, 'show']);
+    Route::get('user', [UserController::class, 'index']);
+    Route::put('user/{id}', [UserController::class, 'update']);
+    Route::delete('user/{id}', [UserController::class, 'destroy']);
 });

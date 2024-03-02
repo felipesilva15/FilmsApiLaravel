@@ -109,8 +109,7 @@ class UserController extends MasterController
      *          response="401", 
      *          description="Unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/ApiError")
-     *      ),
-     *      security={{"bearerAuth":{}}}
+     *      )
      * )
      */
     public function store(Request $request) {
