@@ -1,5 +1,7 @@
 
 <h1 align="center">
+    <img alt="Kanban" width="450px" src="https://cdn.dribbble.com/userupload/16624727/file/original-9b9a2602bcefaddd8b6cf154ab42fd3c.png?resize=752x&vertical=center" />
+  <br>
   API de filmes - Laravel
 </h1>
 
